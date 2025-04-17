@@ -1,0 +1,26 @@
+{
+  "name": "learner-microservice",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "learner-microservice": "file:",
+    "mongoose": "^8.3.1",
+    "nodemailer": "^6.9.13",
+    "nodemon": "^3.1.0",
+    "twilio": "^5.0.4"
+  }
+}

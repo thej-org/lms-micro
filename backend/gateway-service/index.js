@@ -33,6 +33,8 @@ apiGateway.get('/gateway', (req, res) => {
     return res.status(200).json({ message: "gateway online" });
 })
 
+console.log("Auth API:", process.env.AUTH_API);
+
 apiGateway.use('/gateway/api/auth', (req, res) => {
     consoleLog(`Request sent to auth server from gateway`, colors.green);
     proxy.web(req, res, { target: process.env.AUTH_API });

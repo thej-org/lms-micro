@@ -29,7 +29,7 @@ const consoleLog = (message, color) => {
     console.log(`${color}${message}${colors.reset}`);
 };
 
-app.get('/gateway', (req, res) => {
+apiGateway.get('/gateway', (req, res) => {
     return res.status(200).json({ message: "gateway online" });
 })
 
@@ -72,6 +72,6 @@ apiGateway.use('/gateway/api/learner', (req, res) => {
 }); 
 
 //not found route
-app.use((req, res) => {
+apiGateway.use((req, res) => {
     return res.status(404).json({ message: "endpoint not found" });
 })

@@ -29,15 +29,19 @@ const consoleLog = (message, color) => {
     console.log(`${color}${message}${colors.reset}`);
 };
 
-apiGateway.use('/api/auth', (req, res) => {
+app.get('/gateway', (req, res) => {
+    return res.status(200).json({ message: "gateway online" });
+})
+
+apiGateway.use('/gateway/api/auth', (req, res) => {
     consoleLog(`Request sent to auth server from gateway`, colors.green);
     proxy.web(req, res, { target: process.env.AUTH_API });
 });
 
-apiGateway.use('/api/*', authenticate);
+apiGateway.use('/gateway/api/*', authenticate);
 
 // Middleware to add userId to request headers before proxying
-apiGateway.use('/api/*', (req, res, next) => {
+apiGateway.use('/gateway/api/*', (req, res, next) => {
     req.headers.userId = req.userId;
     next();
 });
@@ -51,19 +55,23 @@ apiGateway.listen(process.env.API_GATEWAY_PORT, () => {
     console.log(`API Gateway running on ${process.env.API_GATEWAY_PORT}`);
 });
 
-apiGateway.use('/api/payment', (req, res) => {
+apiGateway.use('/gateway/api/payment', (req, res) => {
 console.log('req :', req.userId);
     consoleLog(`Request sent to payment server from gateway`, colors.cyan);
     proxy.web(req, res, { target: process.env.PAYMENT_API });
 });
 
-apiGateway.use('/api/course', (req, res) => {
+apiGateway.use('/gateway/api/course', (req, res) => {
     consoleLog(`Request sent to course server from gateway`, colors.yellow);
     proxy.web(req, res, { target: process.env.COURSE_API });
 });
 
-apiGateway.use('/api/learner', (req, res) => {
+apiGateway.use('/gateway/api/learner', (req, res) => {
     consoleLog(`Request sent to learner server from gateway`, colors.magenta);
     proxy.web(req, res, { target: process.env.LEARNER_API });
 }); 
 
+//not found route
+app.use((req, res) => {
+    return res.status(404).json({ message: "endpoint not found" });
+})

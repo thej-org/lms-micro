@@ -1,79 +1,79 @@
-# name: "Gateway Service CI"
+name: "Gateway Service CI"
 
-# on:
-#   push:
-#     branches: [master]
-#     paths: ['backend/api-gateway/**']
-#   pull_request:
-#     branches: [master]
-#     paths: ['backend/api-gateway/**']
+on:
+  push:
+    branches: [master]
+    paths: ['backend/api-gateway/**']
+  pull_request:
+    branches: [master]
+    paths: ['backend/api-gateway/**']
 
-# permissions:
-#   contents: write
-#   id-token: write
-#   security-events: write
+permissions:
+  contents: write
+  id-token: write
+  security-events: write
 
-# env:
-#   PROJECT_ID: ${{ secrets.PROJECT_ID }}
-#   GAR_IMAGE_NAME: ${{ secrets.GATEWAY_GAR_IMAGE_NAME }}
-#   GAR_REPO_NAME: ${{ secrets.GATEWAY_GAR_REPO_NAME }}
-#   GAR_REGION: ${{ secrets.GAR_REGION }}
+env:
+  PROJECT_ID: ${{ secrets.PROJECT_ID }}
+  GAR_IMAGE_NAME: ${{ secrets.GATEWAY_GAR_IMAGE_NAME }}
+  GAR_REPO_NAME: ${{ secrets.GATEWAY_GAR_REPO_NAME }}
+  GAR_REGION: ${{ secrets.GAR_REGION }}
 
-# jobs:
+jobs:
 
-#   # sonar:
-#   #   uses: ./.github/workflows/sonarqube-analysis.yaml
-#   #   with:
-#   #     context_path: './backend/api-gateway'
-#   #     sonar_sources: './backend/api-gateway/src'
-#   #   secrets:
-#   #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#   #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-#   #     ORG_SONAR: ${{ secrets.ORG_SONAR }}
-#   #     PROJECT_KEY_SONAR: ${{ secrets.PROJECT_KEY_SONAR }}
+  # sonar:
+  #   uses: ./.github/workflows/sonarqube-analysis.yaml
+  #   with:
+  #     context_path: './backend/api-gateway'
+  #     sonar_sources: './backend/api-gateway/src'
+  #   secrets:
+  #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  #     ORG_SONAR: ${{ secrets.ORG_SONAR }}
+  #     PROJECT_KEY_SONAR: ${{ secrets.PROJECT_KEY_SONAR }}
 
-#   build-push:
-#     uses: ./.github/workflows/build-and-push.yaml
-#     needs: sonar
-#     with:
-#       context_path: ./backend/api-gateway
-#       image_tag: ${{ github.sha }}
-#     secrets:
-#       PROJECT_ID: ${{ secrets.PROJECT_ID }}
-#       GAR_REGION: ${{ secrets.GAR_REGION }}
-#       GAR_IMAGE_NAME: ${{ secrets.GATEWAY_GAR_IMAGE_NAME }}
-#       GAR_REPO_NAME: ${{ secrets.GATEWAY_GAR_REPO_NAME }}
-#       GCP_CREDS: ${{ secrets.GCP_CREDS }}
+  build-push:
+    uses: ./.github/workflows/build-and-push.yaml
+    needs: sonar
+    with:
+      context_path: ./backend/api-gateway
+      image_tag: ${{ github.sha }}
+    secrets:
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      GAR_REGION: ${{ secrets.GAR_REGION }}
+      GAR_IMAGE_NAME: ${{ secrets.GATEWAY_GAR_IMAGE_NAME }}
+      GAR_REPO_NAME: ${{ secrets.GATEWAY_GAR_REPO_NAME }}
+      GCP_CREDS: ${{ secrets.GCP_CREDS }}
 
-#   # snyk-scan:
-#   #   uses: ./.github/workflows/snyk-scan.yaml
-#   #   needs: build-push
-#   #   with:
-#   #     context_path: ./backend/api-gateway
-#   #   secrets:
-#   #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  # snyk-scan:
+  #   uses: ./.github/workflows/snyk-scan.yaml
+  #   needs: build-push
+  #   with:
+  #     context_path: ./backend/api-gateway
+  #   secrets:
+  #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-#   # trivy-scan:
-#   #   uses: ./.github/workflows/trivy-scan.yaml
-#   #   needs: build-push
-#   #   with:
-#   #     image_tag: ${{ github.sha }}
-#   #   secrets:
-#   #     PROJECT_ID: ${{ secrets.PROJECT_ID }}
-#   #     GAR_REGION: ${{ secrets.GAR_REGION }}
-#   #     GAR_IMAGE_NAME: ${{ secrets.GATEWAY_GAR_IMAGE_NAME }}
-#   #     GAR_REPO_NAME: ${{ secrets.GATEWAY_GAR_REPO_NAME }}
-#   #     GCP_CREDS: ${{ secrets.GCP_CREDS }}
+  # trivy-scan:
+  #   uses: ./.github/workflows/trivy-scan.yaml
+  #   needs: build-push
+  #   with:
+  #     image_tag: ${{ github.sha }}
+  #   secrets:
+  #     PROJECT_ID: ${{ secrets.PROJECT_ID }}
+  #     GAR_REGION: ${{ secrets.GAR_REGION }}
+  #     GAR_IMAGE_NAME: ${{ secrets.GATEWAY_GAR_IMAGE_NAME }}
+  #     GAR_REPO_NAME: ${{ secrets.GATEWAY_GAR_REPO_NAME }}
+  #     GCP_CREDS: ${{ secrets.GCP_CREDS }}
 
-#   # update-manifest:
-#   #   uses: ./.github/workflows/helm-tag.yaml
-#   #   needs: trivy-scan
-#   #   with:
-#   #     service_name: 'api-gateway'
-#   #     image_tag: ${{ github.sha }}
-#   #     helm_repo: "https://github.com/AcademiaY4/CogniCare-Manifest.git"
-#   #     service_folder: "api-gateway"
-#   #   secrets:
-#   #     MANIFEST_REPO: AcademiaY4/CogniCare-Manifest
-#   #     MANIFEST_BRANCH: master
-#   #     PAT_FOR_MANIFEST: ${{ secrets.PAT_FOR_MANIFEST }}
+  # update-manifest:
+  #   uses: ./.github/workflows/helm-tag.yaml
+  #   needs: trivy-scan
+  #   with:
+  #     service_name: 'api-gateway'
+  #     image_tag: ${{ github.sha }}
+  #     helm_repo: "https://github.com/AcademiaY4/CogniCare-Manifest.git"
+  #     service_folder: "api-gateway"
+  #   secrets:
+  #     MANIFEST_REPO: AcademiaY4/CogniCare-Manifest
+  #     MANIFEST_BRANCH: master
+  #     PAT_FOR_MANIFEST: ${{ secrets.PAT_FOR_MANIFEST }}

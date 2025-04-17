@@ -4,7 +4,7 @@ import { config } from "dotenv";
 import express from "express";
 import httpProxy from "http-proxy";
 import { authenticate } from "./middlewares/auth.js";
-import proxy from 'express-http-proxy'
+
 
 config();
 

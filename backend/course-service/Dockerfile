@@ -1,6 +1,11 @@
 FROM node:18-alpine
+
 WORKDIR /app
+
 COPY . /app
+
 RUN npm install
+
 EXPOSE 4003
-CMD ["npm", "run", "dev"]
+
+CMD ["node", "src/index.js"]

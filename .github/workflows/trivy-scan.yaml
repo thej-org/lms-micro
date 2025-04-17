@@ -1,0 +1,65 @@
+name: "Trivy Image Scanning"
+
+on:
+  workflow_call:
+    inputs:
+      image_tag:
+        required: true
+        type: string
+    
+    secrets:
+      PROJECT_ID:
+        required: true
+      GAR_REGION:
+        required: true
+      GAR_IMAGE_NAME:
+        required: true
+      GAR_REPO_NAME:
+        required: true
+      GCP_CREDS:
+        required: true
+
+jobs:
+  trivy:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+
+      # - name: Trivy scan
+      #   uses: aquasecurity/trivy-action@master
+      #   with:
+      #     scan-type: image
+      #     image-ref: ${{ secrets.GAR_REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ secrets.FE_GAR_REPO_NAME }}/${{ secrets.FE_GAR_IMAGE_NAME }}:${{ inputs.image_ref }}
+      #     format: 'sarif'
+      #     output: 'trivy-results.sarif'
+      #     severity: 'HIGH,CRITICAL'
+      #     exit-code: '1'
+      #     ignore-unfixed: true
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: GCP GAR Setup
+        uses: ./.github/actions/gcp-setup
+        with:
+          credentials_json: '${{ secrets.GCP_CREDS }}'
+        env:
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          GAR_REGION: ${{ secrets.GAR_REGION }}
+
+      - name: Set up Trivy
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin v0.57.0
+
+      - name: Trivy Scan of Remote Image
+        run: |
+          IMAGE="${{ secrets.GAR_REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ secrets.GAR_REPO_NAME }}/${{ secrets.GAR_IMAGE_NAME }}:${{ inputs.image_tag }}"
+          trivy image --format sarif -o trivy-results.sarif "$IMAGE"
+
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'

@@ -1,0 +1,25 @@
+name: 'GCP Setup Action'
+description: 'Authenticate and set up Google Cloud CLI'
+
+inputs:
+  credentials_json:
+    required: true
+    description: 'GCP Service Account JSON'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Authenticate to GCP
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ inputs.credentials_json }}
+
+    - name: Set up gcloud CLI
+      uses: google-github-actions/setup-gcloud@v2
+      with:
+        project_id: ${{ env.PROJECT_ID }}
+    
+    - name: Docker Auth to GAR
+      shell: bash
+      run: |
+        gcloud auth configure-docker "${{ env.GAR_REGION }}-docker.pkg.dev"

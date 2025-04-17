@@ -11,5 +11,5 @@ COPY . .
 RUN npm run build
 
 EXPOSE 5173
-
+# build the app for production
 CMD [ "npm", "run", "preview" ]

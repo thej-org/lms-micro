@@ -1,0 +1,45 @@
+name: "Docker Build & Push"
+
+on:
+  workflow_call:
+
+    inputs:
+      context_path:
+        required: true
+        type: string
+      image_tag:
+        required: true
+        type: string
+
+    secrets:
+      PROJECT_ID:
+        required: true
+      GAR_REGION:
+        required: true
+      GAR_IMAGE_NAME:
+        required: true
+      GAR_REPO_NAME:
+        required: true
+      GCP_CREDS:
+        required: true
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: GCP Setup
+        uses: ./.github/actions/gcp-setup
+        with:
+          credentials_json: '${{ secrets.GCP_CREDS }}'
+        env:
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          GAR_REGION: ${{ secrets.GAR_REGION }}
+
+      - name: Build and Push Docker image to GAR
+        run: |
+          IMAGE="${{ secrets.GAR_REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ secrets.GAR_REPO_NAME }}/${{ secrets.GAR_IMAGE_NAME }}:${{ inputs.image_tag }}"
+          docker build -t "$IMAGE" ${{ inputs.context_path }}
+          docker push "$IMAGE"

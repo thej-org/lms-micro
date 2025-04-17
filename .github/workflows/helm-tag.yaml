@@ -1,0 +1,56 @@
+name: Update Helm Image Tag
+
+on:
+  workflow_call:
+    secrets:
+      MANIFEST_REPO:
+        required: true
+      MANIFEST_BRANCH:
+        required: false
+      PAT_FOR_MANIFEST:
+        required: false
+
+    inputs:
+      helm_repo:
+        required: true
+        type: string
+      image_tag:
+        required: true
+        type: string
+      service_folder:
+        required: true
+        type: string
+      service_name:
+        required: true
+        type: string
+
+jobs:
+  update-helm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Helm Manifest Repo
+        uses: actions/checkout@v4
+        with:
+          repository: AcademiaY4/CogniCare-Manifest
+          token: ${{ secrets.PAT_FOR_MANIFEST }}
+          path: helm-manifest
+
+      - name: Update image tag
+        working-directory: helm-manifest/charts/${{ inputs.service_folder }}
+        run: |
+          echo "Updating image tag to ${{ inputs.image_tag }}..."
+          sed -i "s/tag: .*/tag: ${{ inputs.image_tag }}/" values.yaml
+
+      - name: Configure Git
+        working-directory: helm-manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and Push changes
+        working-directory: helm-manifest
+        run: |
+          git add .
+          git commit -m "chore: update image tag to ${{ inputs.image_tag }}"
+          git push

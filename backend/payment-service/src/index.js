@@ -10,7 +10,7 @@ export const paymentService = express();
 
 paymentService.use(cookieParser());
 paymentService.use(cors({
-  origin: 'http://localhost:5173',
+  origin: '*', 
   credentials: true,
 }));
 

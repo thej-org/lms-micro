@@ -69,10 +69,10 @@ jobs:
     uses: ./.github/workflows/helm-tag.yaml
     needs: build-push
     with:
-      service_name: 'frontend'
+      service_name: 'frontend-service'
       image_tag: ${{ github.sha }}
       helm_repo: "https://github.com/thej-org/lms-micro-sync.git"
-      service_folder: "frontend"
+      service_folder: "frontend-service"
     secrets:
       # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       MANIFEST_REPO: thej-org/lms-micro-sync

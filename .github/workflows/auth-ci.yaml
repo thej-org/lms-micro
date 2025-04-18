@@ -65,15 +65,16 @@ jobs:
   #     GAR_REPO_NAME: ${{ secrets.AUTH_GAR_REPO_NAME }}
   #     GCP_CREDS: ${{ secrets.GCP_CREDS }}
 
-  # update-manifest:
-  #   uses: ./.github/workflows/helm-tag.yaml
-  #   needs: trivy-scan
-  #   with:
-  #     service_name: 'auth-service'
-  #     image_tag: ${{ github.sha }}
-  #     helm_repo: "https://github.com/AcademiaY4/CogniCare-Manifest.git"
-  #     service_folder: "auth-service"
-  #   secrets:
-  #     MANIFEST_REPO: AcademiaY4/CogniCare-Manifest
-  #     MANIFEST_BRANCH: master
-  #     PAT_FOR_MANIFEST: ${{ secrets.PAT_FOR_MANIFEST }}
+  update-manifest:
+    uses: ./.github/workflows/helm-tag.yaml
+    needs: build-push
+    with:
+      service_name: 'auth-service'
+      image_tag: ${{ github.sha }}
+      helm_repo: "https://github.com/thej-org/lms-micro-sync.git"
+      service_folder: "auth-service"
+    secrets:
+      # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      MANIFEST_REPO: thej-org/lms-micro-sync
+      MANIFEST_BRANCH: master
+      PAT_FOR_MANIFEST: ${{ secrets.PAT_FOR_MANIFEST }}

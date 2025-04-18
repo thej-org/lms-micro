@@ -32,7 +32,7 @@ jobs:
       - name: Checkout Helm Manifest Repo
         uses: actions/checkout@v4
         with:
-          repository: AcademiaY4/CogniCare-Manifest
+          repository: thej-org/lms-micro-sync
           token: ${{ secrets.PAT_FOR_MANIFEST }}
           path: helm-manifest
 

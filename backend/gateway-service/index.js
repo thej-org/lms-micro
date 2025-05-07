@@ -24,7 +24,7 @@ const colors = {
     green: "\x1b[32m"
 };
 
-// Function to log requests with color
+// function to log requests with color
 const consoleLog = (message, color) => {
     console.log(`${color}${message}${colors.reset}`);
 };

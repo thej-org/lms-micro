@@ -7,7 +7,6 @@ config();
 
 export const authService = express();
 authService.use(express.json());
-
 const port = process.env.AUTH_PORT;
 
 // Start the server after connecting to the db

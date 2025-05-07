@@ -21,16 +21,16 @@ env:
 
 jobs:
 
-  # sonar:
-  #   uses: ./.github/workflows/sonarqube-analysis.yaml
-  #   with:
-  #     context_path: './backend/auth-service'
-  #     sonar_sources: './backend/auth-service/src'
-  #   secrets:
-  #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-  #     ORG_SONAR: ${{ secrets.ORG_SONAR }}
-  #     PROJECT_KEY_SONAR: ${{ secrets.PROJECT_KEY_SONAR }}
+  sonar:
+    uses: ./.github/workflows/sonarqube-analysis.yaml
+    with:
+      context_path: './backend/auth-service'
+      sonar_sources: './backend/auth-service/src'
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      ORG_SONAR: ${{ secrets.ORG_SONAR }}
+      PROJECT_KEY_SONAR: ${{ secrets.PROJECT_KEY_SONAR }}
 
   build-push:
     uses: ./.github/workflows/build-and-push.yaml

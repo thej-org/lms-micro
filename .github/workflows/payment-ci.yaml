@@ -34,7 +34,7 @@ jobs:
 
   build-push:
     uses: ./.github/workflows/build-and-push.yaml
-    # needs: sonar
+    needs: sonar
     with:
       context_path: ./backend/payment-service
       image_tag: ${{ github.sha }}

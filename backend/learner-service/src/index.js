@@ -23,7 +23,7 @@ const port = process.env.LEARNER_PORT;
 
 learnerService.use("/", router);
 
-// Start the server after connecting to the database
+// Start the server after connecting to the db
 connectDB()
   .then(() => {
     learnerService.listen(port, () => {

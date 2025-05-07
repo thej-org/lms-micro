@@ -22,7 +22,7 @@ const port = process.env.COURSE_PORT;
 
 courseService.use("/", router);
 
-// Start the server after connecting to the database
+// Start the server after connecting to the db
 connectDB()
   .then(() => {
     courseService.listen(port, () => {

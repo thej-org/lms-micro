@@ -18,7 +18,7 @@ paymentService.use(express.json());
 
 const port = process.env.PAYMENT_PORT;
 
-// Start the server after connecting to the database
+// Start the server after connecting to the db
 connectDB()
   .then(() => {
     paymentService.listen(port, () => {

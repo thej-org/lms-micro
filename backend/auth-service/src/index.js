@@ -10,7 +10,7 @@ authService.use(express.json());
 
 const port = process.env.AUTH_PORT;
 
-// Start the server after connecting to the database
+// Start the server after connecting to the db
 connectDB()
   .then(() => {
     authService.listen(port, () => {

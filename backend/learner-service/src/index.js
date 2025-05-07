@@ -6,7 +6,6 @@ import { connectDB } from "../configs/DBConnect.js";
 import { router } from "../src/routes/learnerRoutes.js";
 
 config();
-
 export const learnerService = express();
 
 learnerService.use(cookieParser());

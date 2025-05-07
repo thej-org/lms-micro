@@ -5,7 +5,6 @@ import express from "express";
 import { connectDB } from "../configs/DBConnect.js";
 
 config();
-
 export const paymentService = express();
 
 paymentService.use(cookieParser());

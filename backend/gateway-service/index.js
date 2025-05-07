@@ -14,6 +14,7 @@ apiGateway.use(cors({
     origin: '*', 
     credentials: true,
 }));
+
 const proxy = httpProxy.createProxyServer({});
 
 const colors = {

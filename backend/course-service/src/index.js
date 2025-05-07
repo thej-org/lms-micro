@@ -6,6 +6,7 @@ import { connectDB } from "../configs/DBConnect.js";
 import { router } from "../src/routes/course.js";
 
 config();
+
 export const courseService = express();
 
 courseService.use(

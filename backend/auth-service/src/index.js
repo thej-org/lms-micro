@@ -4,7 +4,6 @@ import { connectDB } from "../configs/DBConnect.js";
 import { getUserById, login, register } from "./controllers/auth.controller.js";
 
 config();
-
 export const authService = express();
 authService.use(express.json());
 const port = process.env.AUTH_PORT;

@@ -53,21 +53,21 @@ jobs:
   #   secrets:
   #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-  # trivy-scan:
-  #   uses: ./.github/workflows/trivy-scan.yaml
-  #   needs: build-push
-  #   with:
-  #     image_tag: ${{ github.sha }}
-  #   secrets:
-  #     PROJECT_ID: ${{ secrets.PROJECT_ID }}
-  #     GAR_REGION: ${{ secrets.GAR_REGION }}
-  #     GAR_IMAGE_NAME: ${{ secrets.COURSE_GAR_IMAGE_NAME }}
-  #     GAR_REPO_NAME: ${{ secrets.COURSE_GAR_REPO_NAME }}
-  #     GCP_CREDS: ${{ secrets.GCP_CREDS }}
+  trivy-scan:
+    uses: ./.github/workflows/trivy-scan.yaml
+    needs: build-push
+    with:
+      image_tag: ${{ github.sha }}
+    secrets:
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      GAR_REGION: ${{ secrets.GAR_REGION }}
+      GAR_IMAGE_NAME: ${{ secrets.COURSE_GAR_IMAGE_NAME }}
+      GAR_REPO_NAME: ${{ secrets.COURSE_GAR_REPO_NAME }}
+      GCP_CREDS: ${{ secrets.GCP_CREDS }}
 
   update-manifest:
     uses: ./.github/workflows/helm-tag.yaml
-    needs: build-push
+    needs: trivy-scan
     with:
       service_name: 'course-service'
       image_tag: ${{ github.sha }}

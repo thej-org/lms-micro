@@ -7,7 +7,6 @@ import { authenticate } from "./middlewares/auth.js";
 
 
 config();
-
 const apiGateway = express();
 apiGateway.use(cookieParser());
 apiGateway.use(cors({

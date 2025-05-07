@@ -15,6 +15,7 @@ const Router = () => {
             message.error('Please login first');
         }
     }, []);
+    
     return (
         <Routes>
             <Route path="/" element={<Login />} />

@@ -3,7 +3,6 @@ import Router from './Router';
 import AntdHeader from './components/header/AntdHeader';
 
 function App() {
-    
     const userRole = localStorage.getItem('userRole');
     return (
         <>

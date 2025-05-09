@@ -45,13 +45,13 @@ jobs:
       GAR_REPO_NAME: ${{ secrets.FE_GAR_REPO_NAME }}
       GCP_CREDS: ${{ secrets.GCP_CREDS }}
 
-  # snyk-scan:
-  #   uses: ./.github/workflows/snyk-scan.yaml
-  #   needs: build-push
-  #   with:
-  #     context_path: ./frontend
-  #   secrets:
-  #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  snyk-scan:
+    uses: ./.github/workflows/snyk-scan.yaml
+    needs: build-push
+    with:
+      context_path: ./frontend
+    secrets:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   trivy-scan:
     uses: ./.github/workflows/trivy-scan.yaml

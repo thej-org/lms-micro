@@ -57,8 +57,8 @@ jobs:
           cd ${{ inputs.context_path }}
           snyk monitor --all-projects --org=e1733ff7-835f-4fa8-9bd2-1cdc6be250d5
 
-      - name: Upload Snyk results
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: snyk-results.sarif
-        if: always()
+      # - name: Upload Snyk results
+      #   uses: github/codeql-action/upload-sarif@v3
+      #   with:
+      #     sarif_file: snyk-results.sarif
+      #   if: always()

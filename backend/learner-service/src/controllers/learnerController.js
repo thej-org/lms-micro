@@ -3,15 +3,15 @@ import axios from "axios";
 import sendEmail from "../utils/emailUtils.js";
 import sendSMS from "../utils/smsUtils.js";
 
-//Get Course list from the course Microservice
+//get Course list from the course Microservice
 const COURSE_MICRO_SERVICE_BASE_URL = process.env.COURSE_API;
 
-//User Microservice URL
+//user Microservice URL
 const USER_MICRO_SERVICE_BASE_URL = process.env.AUTH_API;
 
 const getCourses = async (req, res) => {
   try {
-    // Make a GET request to the course microservice to fetch the list of courses
+    // make GET request to course microservice to fetch list of courses
     const response = await axios.get(COURSE_MICRO_SERVICE_BASE_URL);
 
     // Extract the courses from the response data

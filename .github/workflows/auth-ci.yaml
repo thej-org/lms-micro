@@ -4,9 +4,9 @@ on:
   push:
     branches: [master]
     paths: ["backend/auth-service/**"]
-  pull_request:
-    branches: [master]
-    paths: ["backend/auth-service/**"]
+  # pull_request:
+  #   branches: [master]
+  #   paths: ['backend/auth-service/**']
 
 permissions:
   contents: write

@@ -4,6 +4,7 @@ import LearnerTable from '../../components/tables/LearnerTable'
 const Learner = () => {
   return (
     <>
+        {/**learner table component */}
         <LearnerTable />;
     </>
   )

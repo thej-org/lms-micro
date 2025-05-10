@@ -59,7 +59,7 @@ const addLearner = async (req, res) => {
 // get current learner
 const getCurrentLearner = async (req, res) => {
   try {
-    //get the course microsrvice
+    //get course microsrvice
     const userId = req.headers.userid;
     const learner = await Learner.findOne({ learnerId: userId });
 
@@ -74,6 +74,7 @@ const getCurrentLearner = async (req, res) => {
   }
 };
 
+// Enrol to courses
 const learnerEnroltoCourses = async (req, res) => {
   try {
     const { courseCode } = req.body;
@@ -111,6 +112,7 @@ const learnerEnroltoCourses = async (req, res) => {
   }
 };
 
+// View course content
 const learnerViewCourse = async (req, res) => {
   try {
     const { courseCode } = req.params;
@@ -142,6 +144,7 @@ const learnerViewCourse = async (req, res) => {
   }
 };
 
+// Unenrol from courses
 const learnerUnenrolFromCourse = async (req, res) => {
   try {
     const { courseCode } = req.params;

@@ -6,6 +6,7 @@ import sendSMS from "../utils/smsUtils.js";
 //Get Course list from the course Microservice
 const COURSE_MICRO_SERVICE_BASE_URL = process.env.COURSE_API;
 
+//User Microservice URL
 const USER_MICRO_SERVICE_BASE_URL = process.env.AUTH_API;
 
 const getCourses = async (req, res) => {
@@ -122,12 +123,10 @@ const learnerViewCourse = async (req, res) => {
 
     // Check if the learner is enrolled in the course
     if (!learner.enrolledCourses.includes(courseCode)) {
-      return res
-        .status(403)
-        .json({
-          message:
-            "You are not enrolled in this course. Please enroll to access it.",
-        });
+      return res.status(403).json({
+        message:
+          "You are not enrolled in this course. Please enroll to access it.",
+      });
     }
     const courseContent = await await axios.get(
       `${COURSE_MICRO_SERVICE_BASE_URL}/courseCode/${courseCode}`

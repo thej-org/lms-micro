@@ -28,7 +28,7 @@ const LeanerProfile = () => {
 				"lecturePdfUrl": "https://www.redbooks.ibm.com/redbooks/pdfs/sg248275.pdf",
 				"lectureVideoUrl": "https://www.youtube.com/watch?v=mgCUmdH5LNk&list=PLTCrU9sGyburHcVKRuw2yXt7V7HEa6ZYY",
 				"lectureQuizUrl": "https://www.javaguides.net/2023/01/microservices-quiz-mcq-multiple-choice.html",
-				"_id": "6643aa9413abd6553499269a"
+				"_id": "6643aa9413abd6553499269a" //remove id
 			},
 			{
 				"lectureNumber": 2,

@@ -4,14 +4,14 @@ on:
   push:
     branches: [master]
     paths: ["frontend/**"]
-  pull_request:
-    branches: [master]
-    paths: ["frontend/**"]
+  # pull_request:
+  #   branches: [master]
+  #   paths: ["frontend/**"]
 
 permissions:
   contents: write
   id-token: write
-  security-events: write 
+  security-events: write
 
 env:
   PROJECT_ID: ${{ secrets.PROJECT_ID }}
@@ -20,12 +20,11 @@ env:
   GAR_REGION: ${{ secrets.GAR_REGION }}
 
 jobs:
-
   sonar:
     uses: ./.github/workflows/sonarqube-analysis.yaml
     with:
-      context_path: './frontend'
-      sonar_sources: './frontend/src'
+      context_path: "./frontend"
+      sonar_sources: "./frontend/src"
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -64,12 +63,12 @@ jobs:
       GAR_IMAGE_NAME: ${{ secrets.FE_GAR_IMAGE_NAME }}
       GAR_REPO_NAME: ${{ secrets.FE_GAR_REPO_NAME }}
       GCP_CREDS: ${{ secrets.GCP_CREDS }}
-  
+
   update-manifest:
     uses: ./.github/workflows/helm-tag.yaml
     needs: [trivy-scan, snyk-scan]
     with:
-      service_name: 'frontend-service'
+      service_name: "frontend-service"
       image_tag: ${{ github.sha }}
       helm_repo: "https://github.com/thej-org/lms-micro-sync.git"
       service_folder: "frontend-service"
@@ -78,4 +77,3 @@ jobs:
       MANIFEST_REPO: thej-org/lms-micro-sync
       MANIFEST_BRANCH: master
       PAT_FOR_MANIFEST: ${{ secrets.PAT_FOR_MANIFEST }}
-

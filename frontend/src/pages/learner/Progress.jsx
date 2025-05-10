@@ -10,8 +10,7 @@ const ProgressModal = ({ isEdit, courseCode, onUpdateProgress }) => {
     const [form] = Form.useForm();
     const { mutate: addProgress, isLoading, isSuccess } = useAddProgress(courseCode);
 
-    // const [isLoading, setIsLoading] = useState(false);
-    // const [isSuccess, setIsSuccess] = useState(false);
+
     const showModal = () => {
         setOpen(true);
     };

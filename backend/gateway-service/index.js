@@ -73,7 +73,7 @@ apiGateway.use('/gateway/api/learner', (req, res) => {
     proxy.web(req, res, { target: process.env.LEARNER_API });
 }); 
 
-//not found route
+
 apiGateway.use((req, res) => {
     return res.status(404).json({ message: "endpoint not found" });
 })

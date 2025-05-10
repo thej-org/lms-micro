@@ -3,10 +3,10 @@ name: "COURSE Service CI"
 on:
   push:
     branches: [master]
-    paths: ['backend/course-service/**']
-  pull_request:
-    branches: [master]
-    paths: ['backend/course-service/**']
+    paths: ["backend/course-service/**"]
+  # pull_request:
+  #   branches: [master]
+  #   paths: ['backend/course-service/**']
 
 permissions:
   contents: write
@@ -20,12 +20,11 @@ env:
   GAR_REGION: ${{ secrets.GAR_REGION }}
 
 jobs:
-
   sonar:
     uses: ./.github/workflows/sonarqube-analysis.yaml
     with:
-      context_path: './backend/course-service'
-      sonar_sources: './backend/course-service/src'
+      context_path: "./backend/course-service"
+      sonar_sources: "./backend/course-service/src"
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -69,7 +68,7 @@ jobs:
     uses: ./.github/workflows/helm-tag.yaml
     needs: [trivy-scan, snyk-scan]
     with:
-      service_name: 'course-service'
+      service_name: "course-service"
       image_tag: ${{ github.sha }}
       helm_repo: "https://github.com/thej-org/lms-micro-sync.git"
       service_folder: "course-service"

@@ -19,7 +19,7 @@ const LeanerProfile = () => {
     console.log(data);
     const navigate = useNavigate();
     const Names = {
-        _id: '66422380fa3c7e0811c04b60',
+        _id: '66422380fa3c7e0811c04b60', //ids should be removed and added as environment variables
         courseCode: '3',
         name: 'Course with content',
         "courseContent": [
@@ -28,28 +28,28 @@ const LeanerProfile = () => {
 				"lecturePdfUrl": "https://www.redbooks.ibm.com/redbooks/pdfs/sg248275.pdf",
 				"lectureVideoUrl": "https://www.youtube.com/watch?v=mgCUmdH5LNk&list=PLTCrU9sGyburHcVKRuw2yXt7V7HEa6ZYY",
 				"lectureQuizUrl": "https://www.javaguides.net/2023/01/microservices-quiz-mcq-multiple-choice.html",
-				"_id": "6643aa9413abd6553499269a"
+				"_id": "6643aa9413abd6553499269a" //remove id
 			},
 			{
 				"lectureNumber": 2,
 				"lecturePdfUrl": "https://www.redbooks.ibm.com/redbooks/pdfs/sg248275.pdf",
 				"lectureVideoUrl": "https://www.youtube.com/watch?v=mBNDxpJTg8U&list=PLTCrU9sGyburHcVKRuw2yXt7V7HEa6ZYY&index=2",
 				"lectureQuizUrl": "https://www.javaguides.net/2023/01/microservices-quiz-mcq-multiple-choice.html",
-				"_id": "6643aa9413abd6553499269b"
+				"_id": "6643aa9413abd6553499269b" //remove id
 			},
 			{
 				"lectureNumber": 3,
 				"lecturePdfUrl": "https://www.redbooks.ibm.com/redbooks/pdfs/sg248275.pdf",
 				"lectureVideoUrl": "https://www.youtube.com/watch?v=vGOEO6mO674&list=PLTCrU9sGyburHcVKRuw2yXt7V7HEa6ZYY&index=3",
 				"lectureQuizUrl": "https://www.javaguides.net/2023/01/microservices-quiz-mcq-multiple-choice.html",
-				"_id": "6643aa9413abd6553499269c"
+				"_id": "6643aa9413abd6553499269c" //remove id
 			},
 			{
 				"lectureNumber": 4,
 				"lecturePdfUrl": "https://www.redbooks.ibm.com/redbooks/pdfs/sg248275.pdf",
 				"lectureVideoUrl": "https://www.youtube.com/watch?v=bQvLj71-0Mk&list=PLTCrU9sGyburHcVKRuw2yXt7V7HEa6ZYY&index=5",
 				"lectureQuizUrl": "https://www.javaguides.net/2023/01/microservices-quiz-mcq-multiple-choice.html",
-				"_id": "6643aa9413abd6553499269d"
+				"_id": "6643aa9413abd6553499269d" //remove id
 			}
 		],
         approval: 'pending',

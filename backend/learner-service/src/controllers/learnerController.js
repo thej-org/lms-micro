@@ -9,6 +9,7 @@ const COURSE_MICRO_SERVICE_BASE_URL = process.env.COURSE_API;
 //user Microservice URL
 const USER_MICRO_SERVICE_BASE_URL = process.env.AUTH_API;
 
+// get courses
 const getCourses = async (req, res) => {
   try {
     // make GET request to course microservice to fetch list of courses
@@ -26,6 +27,7 @@ const getCourses = async (req, res) => {
   }
 };
 
+// add learner
 const addLearner = async (req, res) => {
   try {
     const userId = req.headers.userid;
@@ -54,6 +56,7 @@ const addLearner = async (req, res) => {
   }
 };
 
+// get current learner
 const getCurrentLearner = async (req, res) => {
   try {
     //get the course microsrvice

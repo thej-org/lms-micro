@@ -5,6 +5,7 @@ import Instructor from '../instructor/Instructor';
 import Learner from '../learner/Learner';
 
 const Home = () => {
+    // role
     const userRole = localStorage.getItem('userRole');
     const navigate = useNavigate();
     const getTable = () => {

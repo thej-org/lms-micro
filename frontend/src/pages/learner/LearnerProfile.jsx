@@ -19,7 +19,7 @@ const LeanerProfile = () => {
     console.log(data);
     const navigate = useNavigate();
     const Names = {
-        _id: '66422380fa3c7e0811c04b60',
+        _id: '66422380fa3c7e0811c04b60', //ids should be removed and added as environment variables
         courseCode: '3',
         name: 'Course with content',
         "courseContent": [

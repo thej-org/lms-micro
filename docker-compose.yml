@@ -1,102 +1,102 @@
-# version: '3.8'
+version: '3.8'
 
-# services:
-#   gateway:
-#     build:
-#       context: ./api-gateway
-#       dockerfile: Dockerfile
-#     ports:
-#       - "4000:4000"
-#     environment:
-#       - MONGO_URI=mongodb+srv://admin:admin@ctse.jek3a.mongodb.net/?retryWrites=true&w=majority&appName=ctse
-#       - AUTH_API=http://authentication:4001
-#       - LEARNER_API=http://learner:4002
-#       - COURSE_API=http://course:4003 
-#       - PAYMENT_API=http://payment:4004
-#       - JWT_SECRET='secret'
-#     networks:
-#       - app-network
+services:
+  gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    environment:
+      - MONGO_URI=mongodb+srv://admin:admin@ctse.jek3a.mongodb.net/?retryWrites=true&w=majority&appName=ctse
+      - AUTH_API=http://authentication:4001
+      - LEARNER_API=http://learner:4002
+      - COURSE_API=http://course:4003 
+      - PAYMENT_API=http://payment:4004
+      - JWT_SECRET='secret'
+    networks:
+      - app-network
 
-#   authentication:
-#     build:
-#       context: ./authentication-microservice
-#       dockerfile: Dockerfile
-#     ports:
-#       - "4001:4001"
-#     environment:
-#       - MONGO_URI=mongodb+srv://admin:admin@ctse.jek3a.mongodb.net/?retryWrites=true&w=majority&appName=ctse
-#       - AUTH_API=http://authentication:4001
-#       - LEARNER_API=http://learner:4002
-#       - COURSE_API=http://course:4003 
-#       - PAYMENT_API=http://payment:4004
-#       - JWT_SECRET='secret'
-#     networks:
-#       - app-network
+  authentication:
+    build:
+      context: ./authentication-microservice
+      dockerfile: Dockerfile
+    ports:
+      - "4001:4001"
+    environment:
+      - MONGO_URI=mongodb+srv://admin:admin@ctse.jek3a.mongodb.net/?retryWrites=true&w=majority&appName=ctse
+      - AUTH_API=http://authentication:4001
+      - LEARNER_API=http://learner:4002
+      - COURSE_API=http://course:4003 
+      - PAYMENT_API=http://payment:4004
+      - JWT_SECRET='secret'
+    networks:
+      - app-network
     
-#   course:
-#     build:
-#       context: ./course-microservice
-#       dockerfile: Dockerfile
-#     ports:
-#       - "4003:4003"
-#     environment:
-#       - MONGO_URI=mongodb+srv://admin:admin@ctse.jek3a.mongodb.net/?retryWrites=true&w=majority&appName=ctse
-#       - AUTH_API=http://authentication:4001
-#       - LEARNER_API=http://learner:4002
-#       - COURSE_API=http://course:4003 
-#       - PAYMENT_API=http://payment:4004
-#       - JWT_SECRET='secret'
-#     networks:
-#       - app-network
+  course:
+    build:
+      context: ./course-microservice
+      dockerfile: Dockerfile
+    ports:
+      - "4003:4003"
+    environment:
+      - MONGO_URI=mongodb+srv://admin:admin@ctse.jek3a.mongodb.net/?retryWrites=true&w=majority&appName=ctse
+      - AUTH_API=http://authentication:4001
+      - LEARNER_API=http://learner:4002
+      - COURSE_API=http://course:4003 
+      - PAYMENT_API=http://payment:4004
+      - JWT_SECRET='secret'
+    networks:
+      - app-network
 
-#   learner:
-#     build:
-#       context: ./learner-microservice
-#       dockerfile: Dockerfile
-#     ports:
-#       - "4002:4002"
-#     environment:
-#       - MONGO_URI=mongodb+srv://admin:admin@ctse.jek3a.mongodb.net/?retryWrites=true&w=majority&appName=ctse
-#       - AUTH_API=http://authentication:4001
-#       - LEARNER_API=http://learner:4002
-#       - COURSE_API=http://course:4003 
-#       - PAYMENT_API=http://payment:4004
-#       - JWT_SECRET='secret'
-#     networks:
-#       - app-network
+  learner:
+    build:
+      context: ./learner-microservice
+      dockerfile: Dockerfile
+    ports:
+      - "4002:4002"
+    environment:
+      - MONGO_URI=mongodb+srv://admin:admin@ctse.jek3a.mongodb.net/?retryWrites=true&w=majority&appName=ctse
+      - AUTH_API=http://authentication:4001
+      - LEARNER_API=http://learner:4002
+      - COURSE_API=http://course:4003 
+      - PAYMENT_API=http://payment:4004
+      - JWT_SECRET='secret'
+    networks:
+      - app-network
 
-#   payment:
-#     build:
-#       context: ./payment-microservice
-#       dockerfile: Dockerfile
-#     ports:
-#       - "4004:4004"
-#     environment:
-#       - MONGO_URI=mongodb+srv://admin:admin@ctse.jek3a.mongodb.net/?retryWrites=true&w=majority&appName=ctse
-#       - AUTH_API=http://authentication:4001
-#       - LEARNER_API=http://learner:4002
-#       - COURSE_API=http://course:4003 
-#       - PAYMENT_API=http://payment:4004
-#       - JWT_SECRET='secret'
-#     networks:
-#       - app-network
+  payment:
+    build:
+      context: ./payment-microservice
+      dockerfile: Dockerfile
+    ports:
+      - "4004:4004"
+    environment:
+      - MONGO_URI=mongodb+srv://admin:admin@ctse.jek3a.mongodb.net/?retryWrites=true&w=majority&appName=ctse
+      - AUTH_API=http://authentication:4001
+      - LEARNER_API=http://learner:4002
+      - COURSE_API=http://course:4003 
+      - PAYMENT_API=http://payment:4004
+      - JWT_SECRET='secret'
+    networks:
+      - app-network
   
-#   frontend:
-#     build:
-#       context: ./frontend
-#       dockerfile: Dockerfile
-#     ports:
-#       - "5173:5173"
-#     environment:
-#       - MONGO_URI=mongodb+srv://admin:admin@ctse.jek3a.mongodb.net/?retryWrites=true&w=majority&appName=ctse
-#       - AUTH_API=http://authentication:4001
-#       - LEARNER_API=http://learner:4002
-#       - COURSE_API=http://course:4003 
-#       - PAYMENT_API=http://payment:4004
-#       - JWT_SECRET='secret'
-#     networks:
-#       - app-network
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - MONGO_URI=mongodb+srv://admin:admin@ctse.jek3a.mongodb.net/?retryWrites=true&w=majority&appName=ctse
+      - AUTH_API=http://authentication:4001
+      - LEARNER_API=http://learner:4002
+      - COURSE_API=http://course:4003 
+      - PAYMENT_API=http://payment:4004
+      - JWT_SECRET='secret'
+    networks:
+      - app-network
 
-# networks:
-#   app-network:
-#     driver: bridge
+networks:
+  app-network:
+    driver: bridge

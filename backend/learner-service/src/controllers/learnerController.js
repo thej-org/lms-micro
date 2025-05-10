@@ -14,13 +14,13 @@ const getCourses = async (req, res) => {
     // make GET request to course microservice to fetch list of courses
     const response = await axios.get(COURSE_MICRO_SERVICE_BASE_URL);
 
-    // Extract the courses from the response data
+    // extract courses from response data
     const courses = response.data.courses;
 
-    // Return the courses as a JSON response
+    // return courses as a JSON response
     return res.status(200).json({ courses });
   } catch (error) {
-    // If an error occurs, log the error and return an error response
+    // log error and return an error response
     console.error("Error fetching courses:", error);
     return res.status(500).json({ error: "Failed to fetch courses" });
   }

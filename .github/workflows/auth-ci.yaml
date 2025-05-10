@@ -3,10 +3,10 @@ name: "AUTH Service CI"
 on:
   push:
     branches: [master]
-    paths: ['backend/auth-service/**']
+    paths: ["backend/auth-service/**"]
   pull_request:
     branches: [master]
-    paths: ['backend/auth-service/**']
+    paths: ["backend/auth-service/**"]
 
 permissions:
   contents: write
@@ -20,12 +20,11 @@ env:
   GAR_REGION: ${{ secrets.GAR_REGION }}
 
 jobs:
-
   sonar:
     uses: ./.github/workflows/sonarqube-analysis.yaml
     with:
-      context_path: './backend/auth-service'
-      sonar_sources: './backend/auth-service/src'
+      context_path: "./backend/auth-service"
+      sonar_sources: "./backend/auth-service/src"
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -69,7 +68,7 @@ jobs:
     uses: ./.github/workflows/helm-tag.yaml
     needs: [trivy-scan, snyk-scan]
     with:
-      service_name: 'auth-service'
+      service_name: "auth-service"
       image_tag: ${{ github.sha }}
       helm_repo: "https://github.com/thej-org/lms-micro-sync.git"
       service_folder: "auth-service"

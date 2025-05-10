@@ -11,7 +11,7 @@ export const learnerService = express();
 learnerService.use(cookieParser());
 learnerService.use(
   cors({
-    origin: '*', 
+    origin: "*",
     credentials: true,
   })
 );
@@ -22,7 +22,7 @@ const port = process.env.LEARNER_PORT;
 
 learnerService.use("/", router);
 
-// Start the server after connecting to the db
+// start server after connecting to db
 connectDB()
   .then(() => {
     learnerService.listen(port, () => {

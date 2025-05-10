@@ -42,14 +42,14 @@ const LeanerProfile = () => {
 				"lecturePdfUrl": "https://www.redbooks.ibm.com/redbooks/pdfs/sg248275.pdf",
 				"lectureVideoUrl": "https://www.youtube.com/watch?v=vGOEO6mO674&list=PLTCrU9sGyburHcVKRuw2yXt7V7HEa6ZYY&index=3",
 				"lectureQuizUrl": "https://www.javaguides.net/2023/01/microservices-quiz-mcq-multiple-choice.html",
-				"_id": "6643aa9413abd6553499269c"
+				"_id": "6643aa9413abd6553499269c" //remove id
 			},
 			{
 				"lectureNumber": 4,
 				"lecturePdfUrl": "https://www.redbooks.ibm.com/redbooks/pdfs/sg248275.pdf",
 				"lectureVideoUrl": "https://www.youtube.com/watch?v=bQvLj71-0Mk&list=PLTCrU9sGyburHcVKRuw2yXt7V7HEa6ZYY&index=5",
 				"lectureQuizUrl": "https://www.javaguides.net/2023/01/microservices-quiz-mcq-multiple-choice.html",
-				"_id": "6643aa9413abd6553499269d"
+				"_id": "6643aa9413abd6553499269d" //remove id
 			}
 		],
         approval: 'pending',

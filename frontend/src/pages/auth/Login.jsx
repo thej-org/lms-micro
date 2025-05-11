@@ -10,7 +10,7 @@ const Login = () => {
         console.log('values :', values);
         login(values);
     };
-
+    // useeffect
     useEffect(() => {
         localStorage.clear();
     }, []);

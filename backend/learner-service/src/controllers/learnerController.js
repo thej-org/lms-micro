@@ -118,15 +118,15 @@ const learnerViewCourse = async (req, res) => {
     const { courseCode } = req.params;
     const learnerId = req.headers.userid;
 
-    // Find the learner
+    // Find learner
     const learner = await Learner.findOne({ learnerId });
 
-    // Check if the learner exists
+    // Check if learner exists
     if (!learner) {
       return res.status(404).json({ message: "Learner not found" });
     }
 
-    // Check if the learner is enrolled in the course
+    // Check if learner is enrolled in course
     if (!learner.enrolledCourses.includes(courseCode)) {
       return res.status(403).json({
         message:
@@ -160,15 +160,15 @@ const learnerUnenrolFromCourse = async (req, res) => {
         .json({ message: "Learner is not enrolled in this course" });
     }
 
-    // Remove the courseCode from the enrolledCourses array
+    // Remove courseCode from enrolledCourses array
     learner.enrolledCourses = learner.enrolledCourses.filter(
       (code) => code !== courseCode
     );
 
-    // Save the updated learner
+    // Save updated learner
     await learner.save();
 
-    // to provide confirmation that the unenrollment was successful
+    // to provide confirmation that unenrollment was successful
     const updatedLearner = await Learner.findOne({
       learnerId: req.headers.userid,
     });
